@@ -6,8 +6,12 @@ class UsersController < ApplicationController
   def create #signup
     @user = User.new(user_params)
     @user.save
-    session[:user_id] = @user.id
-    redirect_to controller: 'welcome', action: 'home'
+    if @user
+      session[:user_id] = @user.id
+      redirect_to controller: 'welcome', action: 'home'
+    else
+      redirect_to controller: 'users', action: 'new'
+    end
   end
 
   def show
