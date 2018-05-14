@@ -7,12 +7,20 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.save
     byebug
-    if !@user
+    if params[:user][:password] != params[:user][:password_confirmation]
       redirect_to controller: 'users', action: 'new'
     else
-      session[:user_id] = @user.id
+      session[:user_id] = @user.id #logs them in
       redirect_to controller: 'welcome', action: 'home'
     end
+=begin
+    if @user.id != nil
+      redirect_to controller: 'welcome', action: 'home'
+    else
+      session[:user_id] = @user.id
+      redirect_to controller: 'users', action: 'new'
+    end
+=end
   end
 
   def show
