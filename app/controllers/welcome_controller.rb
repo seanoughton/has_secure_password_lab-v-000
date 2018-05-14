@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
   def home
-    byebug
+    @user = User.find(session[:user_id])
   end
 
 end
