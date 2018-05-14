@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   def new
   end
 
-  def create
-    byebug
-    user = User.new(user_params).save
+  def create #signup
+    @user = User.new(user_params).save
+    session[:user_id] = @user.id
+    redirect_to controller: 'welcome', action: 'home'
   end
 
   def show
