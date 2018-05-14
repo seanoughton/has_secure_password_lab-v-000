@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create #signup
-    @user = User.new(user_params).save
+    @user = User.new(user_params)
+    @user.save
     session[:user_id] = @user.id
     redirect_to controller: 'welcome', action: 'home'
   end
